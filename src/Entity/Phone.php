@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhoneRepository")
@@ -13,46 +14,64 @@ class Phone
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Serializer\Groups({"list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @Serializer\Groups({"list", "details"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=8)
+     *
+     * @Serializer\Groups({"list", "details"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=16)
+     *
+     * @Serializer\Groups({"list", "details"})
      */
     private $brand;
 
     /**
      * @ORM\Column(type="string", length=16)
+     *
+     * @Serializer\Groups({"details"})
      */
     private $operationSystem;
 
     /**
      * @ORM\Column(type="string", length=16)
+     *
+     * @Serializer\Groups({"details"})
      */
     private $screenSize;
 
     /**
      * @ORM\Column(type="string", length=16)
+     *
+     * @Serializer\Groups({"details"})
      */
     private $internalStorageMemory;
 
     /**
      * @ORM\Column(type="string", length=16)
+     *
+     * @Serializer\Groups({"details"})
      */
     private $color;
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @Serializer\Groups({"details"})
      */
     private $description;
 

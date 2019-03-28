@@ -2,18 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Phone;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Response;
 
-class PhoneController extends AbstractController
+class PhoneController extends AbstractFOSRestController
 {
     /**
-     * @Route("/phone", name="phone")
+     * @Rest\Get("/phones", name="article_list")
+     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"list"})
      */
-    public function index()
+    public function list()
     {
-        return $this->render('phone/index.html.twig', [
-            'controller_name' => 'PhoneController',
-        ]);
+        $phones = $this->getDoctrine()
+            ->getRepository(Phone::class)
+            ->findAll();
+
+        return $phones;
     }
 }
