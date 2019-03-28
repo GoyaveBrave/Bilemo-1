@@ -21,4 +21,17 @@ class PhoneController extends AbstractFOSRestController
 
         return $phones;
     }
+
+    /**
+     * @Rest\Get(
+     *     path = "/phones/{id}",
+     *     name = "phone_show",
+     *     requirements = {"id"="\d+"}
+     * )
+     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"details"})
+     */
+    public function show(Phone $phone)
+    {
+        return $phone;
+    }
 }
