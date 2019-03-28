@@ -1,4 +1,4 @@
-# BileMo 
+# BileMo [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb109be8d2e249869a3ec4181815cb5e)](https://www.codacy.com/app/percevalseb1309/Bilemo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=percevalseb1309/Bilemo&amp;utm_campaign=Badge_Grade)
 
 __OpenClassrooms project :__ Create a web service exposing an API 
 
