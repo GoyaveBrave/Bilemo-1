@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofphp/php-cs-fixer": "^2.14",
+        "friendsofsymfony/rest-bundle": "^2.5",
         "jms/serializer-bundle": "^3.2",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/apache-pack": "^1.0",
