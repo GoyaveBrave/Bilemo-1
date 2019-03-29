@@ -27,7 +27,7 @@ class User
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Serializer\Groups({"list", "details"})
      */
@@ -35,6 +35,8 @@ class User
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @Serializer\Exclude
      */
     private $password;
 
