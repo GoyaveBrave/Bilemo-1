@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Exception\ResourceValidationException;
 use App\Representation\Users;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -85,7 +86,12 @@ class UserController extends AbstractFOSRestController
     public function create(User $user, ConstraintViolationListInterface $violations)
     {
         if (count($violations) > 0) {
-            return $this->view($violations, Response::HTTP_BAD_REQUEST);
+            $message = 'The JSON sent contains invalid data. Here are the errors you need to correct: ';
+            foreach ($violations as $violation) {
+                $message .= sprintf('Field %s: %s ', $violation->getPropertyPath(), $violation->getMessage());
+            }
+
+            throw new ResourceValidationException($message);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
