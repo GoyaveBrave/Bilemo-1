@@ -52,4 +52,17 @@ class UserController extends AbstractFOSRestController
 
         return new Users($pager);
     }
+
+    /**
+     * @Rest\Get(
+     *     path = "/users/{id}",
+     *     name = "user_show",
+     *     requirements = {"id"="\d+"}
+     * )
+     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"details"})
+     */
+    public function show(User $user)
+    {
+        return $user;
+    }
 }
