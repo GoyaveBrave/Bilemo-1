@@ -1,5 +1,8 @@
 # Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
-fos_rest: 
+fos_rest:
+    param_fetcher_listener:
+        enabled: true
+        force: true
     view:
         formats: { json: true, xml: false, rss: false }
         view_response_listener:
