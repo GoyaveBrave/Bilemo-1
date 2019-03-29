@@ -21,6 +21,8 @@ fos_rest:
         enabled: true
         exception_controller: 'fos_rest.exception.controller:showAction'
         codes:
+            'App\Exception\ResourceValidationException': 400
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
         messages:
+            'App\Exception\ResourceValidationException': true
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
