@@ -2,21 +2,31 @@
 
 namespace App\Repository;
 
-use App\Entity\Phone;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-
 /**
  * @method Phone|null find($id, $lockMode = null, $lockVersion = null)
  * @method Phone|null findOneBy(array $criteria, array $orderBy = null)
  * @method Phone[]    findAll()
  * @method Phone[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PhoneRepository extends ServiceEntityRepository
+class PhoneRepository extends AbstractRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function search($term, $order = 'asc', $limit = 5, $offset = 0)
     {
-        parent::__construct($registry, Phone::class);
+        $qb = $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.id', $order);
+        
+        if (!empty($term)) {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->like('p.name', ':term'),
+                    $qb->expr()->like('p.brand', ':term')
+                )
+            )
+            ->setParameter('term', '%'.$term.'%');
+        }
+        
+        return $this->paginate($qb, $limit, $offset);
     }
 
     // /**
