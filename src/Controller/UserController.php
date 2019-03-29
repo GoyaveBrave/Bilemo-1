@@ -7,6 +7,7 @@ use App\Representation\Users;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractFOSRestController
@@ -63,6 +64,23 @@ class UserController extends AbstractFOSRestController
      */
     public function show(User $user)
     {
+        return $user;
+    }
+
+    /**
+     * @Rest\Post(
+     *     path = "/users",
+     *     name = "user_create",
+     * )
+     * @ParamConverter("user", converter="fos_rest.request_body")
+     * @Rest\View(statusCode=Response::HTTP_CREATED, serializerGroups={"details"})
+     */
+    public function create(User $user)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
         return $user;
     }
 }
