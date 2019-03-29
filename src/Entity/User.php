@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -22,6 +23,7 @@ class User
     /**
      * @ORM\Column(type="string", length=64)
      *
+     * @Assert\NotBlank(groups={"create"})
      * @Serializer\Groups({"list", "details"})
      */
     private $username;
@@ -29,6 +31,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
+     * @Assert\NotBlank(groups={"create"})
      * @Serializer\Groups({"list", "details"})
      */
     private $email;
