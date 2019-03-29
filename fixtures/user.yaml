@@ -3,5 +3,5 @@
 App\Entity\User:
         user{1..25}:
             username: <username()>
-            email: <password()>
-            password: <email()>
+            email: <email()>
+            password: <password()>
