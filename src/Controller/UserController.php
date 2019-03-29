@@ -100,4 +100,21 @@ class UserController extends AbstractFOSRestController
 
         return $user;
     }
+
+    /**
+     * @Rest\Delete(
+     *     path = "/users/{id}",
+     *     name = "user_delete",
+     *     requirements = {"id"="\d+"}
+     * )
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     */
+    public function deleteAction(User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        return;
+    }
 }
