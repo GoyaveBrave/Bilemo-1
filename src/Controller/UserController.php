@@ -15,7 +15,11 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 class UserController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/users", name="user_list")
+     * @Rest\Get(
+     *     path = "/users",
+     *     name = "user_list",
+     * )
+     *
      * @Rest\QueryParam(
      *     name="keyword",
      *     requirements="[a-zA-Z0-9]+",
@@ -40,7 +44,11 @@ class UserController extends AbstractFOSRestController
      *     default="0",
      *     description="The pagination offset."
      * )
-     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"list"})
+     *
+     * @Rest\View(
+     *     statusCode=Response::HTTP_OK,
+     *     serializerGroups={"list"}
+     * )
      */
     public function list(ParamFetcherInterface $paramFetcher)
     {
@@ -62,7 +70,11 @@ class UserController extends AbstractFOSRestController
      *     name = "user_show",
      *     requirements = {"id"="\d+"}
      * )
-     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"details"})
+     *
+     * @Rest\View(
+     *     statusCode=Response::HTTP_OK,
+     *     serializerGroups={"details"}
+     * )
      */
     public function show(User $user)
     {
@@ -74,6 +86,7 @@ class UserController extends AbstractFOSRestController
      *     path = "/users",
      *     name = "user_create",
      * )
+     *
      * @ParamConverter(
      *     "user",
      *      converter="fos_rest.request_body",
@@ -81,7 +94,11 @@ class UserController extends AbstractFOSRestController
      *         "validator"={"groups"="create"}
      *     }
      * )
-     * @Rest\View(statusCode=Response::HTTP_CREATED, serializerGroups={"details"})
+     *
+     * @Rest\View(
+     *     statusCode=Response::HTTP_CREATED,
+     *     serializerGroups={"details"}
+     * )
      */
     public function create(User $user, ConstraintViolationListInterface $violations)
     {
@@ -93,6 +110,7 @@ class UserController extends AbstractFOSRestController
 
             throw new ResourceValidationException($message);
         }
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
@@ -106,6 +124,7 @@ class UserController extends AbstractFOSRestController
      *     name = "user_delete",
      *     requirements = {"id"="\d+"}
      * )
+     *
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      */
     public function deleteAction(User $user)

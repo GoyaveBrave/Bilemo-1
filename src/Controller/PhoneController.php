@@ -12,7 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 class PhoneController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/phones", name="article_list")
+     * @Rest\Get(
+     *     path = "/phones",
+     *     name = "phone_list",
+     * )
+     *
      * @Rest\QueryParam(
      *     name="keyword",
      *     requirements="[a-zA-Z0-9]+",
@@ -37,7 +41,11 @@ class PhoneController extends AbstractFOSRestController
      *     default="0",
      *     description="The pagination offset."
      * )
-     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"list"})
+     *
+     * @Rest\View(
+     *     statusCode=Response::HTTP_OK,
+     *     serializerGroups={"list"}
+     * )
      */
     public function list(ParamFetcherInterface $paramFetcher)
     {
@@ -59,7 +67,11 @@ class PhoneController extends AbstractFOSRestController
      *     name = "phone_show",
      *     requirements = {"id"="\d+"}
      * )
-     * @Rest\View(statusCode=Response::HTTP_OK, serializerGroups={"details"})
+     *
+     * @Rest\View(
+     *     statusCode=Response::HTTP_OK,
+     *     serializerGroups={"details"}
+     * )
      */
     public function show(Phone $phone)
     {

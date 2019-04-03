@@ -7,4 +7,3 @@ App\Entity\User:
         email: <email()>
         password: <password()>
         created: '<dateTimeBetween("-200 days", "now")>'
-        updated: '<dateTimeBetween($created, "now")>'

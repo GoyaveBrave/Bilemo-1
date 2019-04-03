@@ -31,7 +31,9 @@ class Users
     public function addMeta($name, $value): void
     {
         if (isset($this->meta[$name])) {
-            throw new \LogicException(sprintf('This meta already exists. You are trying to override this meta, use the setMeta method instead for the %s meta.', $name));
+            $message = 'This meta already exists. ';
+            $message .= 'You are trying to override this meta, use the setMeta method instead for the %s meta.';
+            throw new \LogicException(sprintf($message, $name));
         }
 
         $this->setMeta($name, $value);
