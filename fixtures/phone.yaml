@@ -7,7 +7,7 @@ App\Entity\Phone:
         brand: Razer
         operationSystem: Android
         screenSize: 5.72 inches
-        internalStorageMemory: 64 GB
+        internalStorage: 64 GB
         color: Black
         description: We set the standard in mobile gaming with the Razer phone, but didn't stop there. The RAZER Phone 2 levels up mobile gaming with a brighter 1440P 120Hz display with ultra motion technology which delivers smooth, sharp, and stutter-free visuals combined with an upgraded Snapdragon 845 with vapor chamber cooling. It’s paired with flagship features including wireless charging, water resistance, and Chroma RGB lighting for full customization. The Razer phone 2’s vastly improved Dual cameras let you capture reality in all its glory with an F/1. 75 wide lens with oil combined with a Telephoto.
     phone2:
@@ -16,7 +16,7 @@ App\Entity\Phone:
         brand: Samsung
         operationSystem: Android
         screenSize: 6.1 inches
-        internalStorageMemory: 128 GB
+        internalStorage: 128 GB
         color: Prism Black
         description: Factory Unlocked cell phone.
     phone3:
@@ -25,7 +25,7 @@ App\Entity\Phone:
         brand: Samsung
         operationSystem: Android
         screenSize: 6.2 inches
-        internalStorageMemory: 64 GB
+        internalStorage: 64 GB
         color: Midnight Black
         description: U.S. limited warranty. Latest Galaxy phone with Infinity Display, Duel Pixel Camera, iris scanning and Ip68-rated water and dust resistance. The phone comes with a stunning 5.8" Quad HD+ Super AMOLED display (2960x1440) with 570 ppi and world's first 10nm processor. Resolution (Main Display) - 2960 x 1440 (Quad HD+)and features rear camera resolution - 12.0 megapixel with auto focus and the front camera resolution of 8.0 megapixel with auto focus and has a video recording resolution at UHD 4K (3840 x 2160)@60fps . Features 4 gb RAM and ROM size of 64 GB and the available memory is approximately about 50.3 GB and also features bluetooth version - Bluetooth v5.0 (LE up to 2 Mbps) and also features standard battery capacity of 3000 maH with audio playback time of up to 48 hours and audio playback time with Always On Display Off) is approximately up to 80 hours and the talk time (3G WCDMA) is up to 22 hours.
     phone4:
@@ -34,7 +34,7 @@ App\Entity\Phone:
         brand: Samsung
         operationSystem: Android
         screenSize: 6.4 inches
-        internalStorageMemory: 128 GB
+        internalStorage: 128 GB
         color: Prism Green
         description: The Galaxy S10 is a fitting 10th anniversary phone for Samsung and its storied S series. It delivers on change with a novel-looking Infinity-O screen so large it displaces the front camera, and a triple-lens rear camera that takes ultra-wide photos. Its in-screen fingerprint sensor tech should serve you well, while its Wireless PowerShare could serve your friends well. That’s a lot of change – just know that it comes at a high price.
     phone5:
@@ -43,7 +43,7 @@ App\Entity\Phone:
         brand: Apple
         operationSystem: iOS
         screenSize: 6.1 inches
-        internalStorageMemory: 64 GB
+        internalStorage: 64 GB
         color: Red
         description: All-screen design. Longest battery life ever in an iPhone. Fastest performance. Water and splash resistant. Studio-quality photos and 4K video. More secure with Face ID. The new iPhone XR. It’s a brilliant upgrade.
     phone6:
@@ -52,7 +52,7 @@ App\Entity\Phone:
         brand: BlackBerry 
         operationSystem: Android
         screenSize: 4.5 inches
-        internalStorageMemory: 64 GB
+        internalStorage: 64 GB
         color: Black
         description: The all-new BlackBerry Key2 delivers an iconic smartphone experience unlike any other, embracing the heritage of BlackBerry that includes the most intelligent keyboard ever all in the most Secure Android smartphone.
     phone7:
@@ -61,7 +61,7 @@ App\Entity\Phone:
         brand: Apple
         operationSystem: iOS
         screenSize: 5.8 inches
-        internalStorageMemory: 64 GB
+        internalStorage: 64 GB
         color: Space Gray
         description: The iPhone X was completely redesigned from top to bottom for the iPhone’s 10th anniversary. Featuring a glass over aluminum body, the iPhone X does away with home button altogether and introduces all new gestures, as well as Face ID for authentication. The display is a first for the iPhone as well. The iPhone X features a bezel-less 5.8-inch OLED display with a top notch for the camera.
     phone8:
@@ -70,7 +70,7 @@ App\Entity\Phone:
         brand: Huawei
         operationSystem: Android
         screenSize: 6.1 inches
-        internalStorageMemory: 128 GB
+        internalStorage: 128 GB
         color: Midnight Blue
         description: The Huawei P20 Pro isn’t one of those underwhelming phones that get churned out annually with a negligible upgrade – this device is something special. Super-stylish and packed with features, this flagship smartphone has been created with an OLED screen, a bezel-less design and a glass back, while the octa-core processor and 6GB of RAM mean that it’s fast. Then there are the fantastic front 24MP and rear 40MP cameras that not only shames competitors due to picture quality and speed, they positively destroy their ‘innovative’ reputations too.
     phone9:
@@ -79,7 +79,7 @@ App\Entity\Phone:
         brand: Huawei
         operationSystem: Android
         screenSize: 7.2 inches
-        internalStorageMemory: 128 GB
+        internalStorage: 128 GB
         color: Twilight
         description: New Factory Unlocked Huawei Mate 20 X EVR-L29 128GB/6GB - Twilight
     phone10:
@@ -88,6 +88,6 @@ App\Entity\Phone:
         brand: BlackBerry
         operationSystem: Android
         screenSize: 4.5 inches
-        internalStorageMemory: 64 GB
+        internalStorage: 64 GB
         color: Slate
         description: The Android-powered BlackBerry KEY2 LE delivers a genuine BlackBerry smartphone experience purpose-built for everyday use.

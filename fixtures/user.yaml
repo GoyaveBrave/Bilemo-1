@@ -1,7 +1,10 @@
 # fixtures/user.yaml
 
 App\Entity\User:
-        user{1..25}:
-            username: <username()>
-            email: <email()>
-            password: <password()>
+    user{1..25}:
+        username: <username()>
+        fullname: '<firstName()> <lastName()>'
+        email: <email()>
+        password: <password()>
+        created: '<dateTimeBetween("-200 days", "now")>'
+        updated: '<dateTimeBetween($created, "now")>'

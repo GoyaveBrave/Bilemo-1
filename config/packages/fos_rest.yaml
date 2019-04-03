@@ -9,7 +9,7 @@ fos_rest:
             enabled: true
             force: true
     serializer:
-        serialize_null: true
+        serialize_null: false
     body_converter:
         enabled: true
         validate: true
