@@ -77,13 +77,6 @@ class User
      */
     private $created;
 
-    /**
-     * @ORM\Column(type="datetimetz", nullable=true)
-     *
-     * @Serializer\Groups({"details"})
-     */
-    private $updated;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -145,18 +138,6 @@ class User
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
-
-        return $this;
-    }
-
-    public function getUpdated(): ?\DateTimeInterface
-    {
-        return $this->updated;
-    }
-
-    public function setUpdated(?\DateTimeInterface $updated): self
-    {
-        $this->updated = $updated;
 
         return $this;
     }
