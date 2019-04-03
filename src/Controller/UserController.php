@@ -93,7 +93,6 @@ class UserController extends AbstractFOSRestController
 
             throw new ResourceValidationException($message);
         }
-
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();

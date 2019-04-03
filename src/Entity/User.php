@@ -5,9 +5,14 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks
+ *
+ * @UniqueEntity(fields="username", groups={"create"})
+ * @UniqueEntity(fields="email", groups={"create"})
  */
 class User
 {
@@ -24,28 +29,76 @@ class User
      * @ORM\Column(type="string", length=64)
      *
      * @Assert\NotBlank(groups={"create"})
+     * @Assert\Length(
+     *     min=2,
+     *     max=64,
+     *     groups={"create"}
+     * )
+     *
+     * @Serializer\Groups({"list", "details"})
+     */
+    private $fullname;
+
+    /**
+     * @ORM\Column(type="string", length=64, unique=true)
+     *
+     * @Assert\NotBlank(groups={"create"})
+     * @Assert\Length(
+     *     min=2,
+     *     max=64,
+     *     groups={"create"}
+     * )
+     *
      * @Serializer\Groups({"list", "details"})
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      *
      * @Assert\NotBlank(groups={"create"})
+     * @Assert\Email(groups={"create"})
+     *
      * @Serializer\Groups({"list", "details"})
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      *
      * @Serializer\Exclude
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="datetimetz")
+     *
+     * @Serializer\Groups({"details"})
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="datetimetz", nullable=true)
+     *
+     * @Serializer\Groups({"details"})
+     */
+    private $updated;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFullname(): ?string
+    {
+        return $this->fullname;
+    }
+
+    public function setFullname(string $fullname): self
+    {
+        $this->fullname = $fullname;
+
+        return $this;
     }
 
     public function getUsername(): ?string
@@ -82,5 +135,37 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(?\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedValue()
+    {
+        $this->created = new \Datetime("now", new \DateTimeZone('Europe/Paris'));
     }
 }

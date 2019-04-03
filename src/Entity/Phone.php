@@ -20,7 +20,7 @@ class Phone
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, unique=true)
      *
      * @Serializer\Groups({"list", "details"})
      */
@@ -59,7 +59,7 @@ class Phone
      *
      * @Serializer\Groups({"details"})
      */
-    private $internalStorageMemory;
+    private $internalStorage;
 
     /**
      * @ORM\Column(type="string", length=16)
@@ -140,14 +140,14 @@ class Phone
         return $this;
     }
 
-    public function getInternalStorageMemory(): ?string
+    public function getInternalStorage(): ?string
     {
-        return $this->internalStorageMemory;
+        return $this->internalStorage;
     }
 
-    public function setInternalStorageMemory(string $internalStorageMemory): self
+    public function setInternalStorage(string $internalStorage): self
     {
-        $this->internalStorageMemory = $internalStorageMemory;
+        $this->internalStorage = $internalStorage;
 
         return $this;
     }
