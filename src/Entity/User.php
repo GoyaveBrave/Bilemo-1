@@ -41,6 +41,7 @@ class User
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list"})
      */
     private $id;
@@ -55,6 +56,7 @@ class User
      *     groups={"create"}
      * )
      *
+     * @Serializer\Since("2.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $fullname;
@@ -69,6 +71,7 @@ class User
      *     groups={"create"}
      * )
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $username;
@@ -79,6 +82,7 @@ class User
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Email(groups={"create"})
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $email;
@@ -93,6 +97,7 @@ class User
     /**
      * @ORM\Column(type="datetimetz")
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $created;

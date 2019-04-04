@@ -26,6 +26,7 @@ class Phone
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list"})
      */
     private $id;
@@ -33,6 +34,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=64, unique=true)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $name;
@@ -40,6 +42,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=8)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $price;
@@ -47,6 +50,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=16)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $brand;
@@ -54,6 +58,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=16)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $operationSystem;
@@ -61,6 +66,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=16)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $screenSize;
@@ -68,6 +74,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=16)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $internalStorage;
@@ -75,6 +82,7 @@ class Phone
     /**
      * @ORM\Column(type="string", length=16)
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $color;
@@ -82,6 +90,7 @@ class Phone
     /**
      * @ORM\Column(type="text")
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $description;

@@ -4,6 +4,10 @@ fos_rest:
         enabled: true
         force: true
     view:
+        mime_types:
+            enabled: true
+            formats:
+                json: ['application/json', 'application/json;version=1.0', 'application/json;version=2.0']
         formats: { json: true, xml: false, rss: false }
         view_response_listener:
             enabled: true
@@ -26,3 +30,10 @@ fos_rest:
         messages:
             'App\Exception\ResourceValidationException': true
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+    versioning:
+        enabled: true
+        default_version: '1.0'
+        resolvers:
+            media_type:
+                enabled: true
+                regex: /(v|version)=(?P<version>[0-9\.]+)/
