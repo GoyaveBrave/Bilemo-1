@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -13,6 +14,25 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @UniqueEntity(fields="username", groups={"create"})
  * @UniqueEntity(fields="email", groups={"create"})
+ *
+ * @Hateoas\Relation(
+ *      "self",
+ *      href = @Hateoas\Route(
+ *          "user_show",
+ *          parameters = { "id" = "expr(object.getId())" },
+ *          absolute = true
+ *      ),
+ *      exclusion = @Hateoas\Exclusion(groups={"list"})
+ * )
+ * @Hateoas\Relation(
+ *      "delete",
+ *      href = @Hateoas\Route(
+ *          "user_delete",
+ *          parameters = { "id" = "expr(object.getId())" },
+ *          absolute = true
+ *      ),
+ *      exclusion = @Hateoas\Exclusion(groups={"details"})
+ * )
  */
 class User
 {
@@ -21,6 +41,7 @@ class User
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list"})
      */
     private $id;
@@ -35,6 +56,7 @@ class User
      *     groups={"create"}
      * )
      *
+     * @Serializer\Since("2.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $fullname;
@@ -49,6 +71,7 @@ class User
      *     groups={"create"}
      * )
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $username;
@@ -59,6 +82,7 @@ class User
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Email(groups={"create"})
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $email;
@@ -73,6 +97,7 @@ class User
     /**
      * @ORM\Column(type="datetimetz")
      *
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $created;
