@@ -7,8 +7,10 @@ use App\Representation\Phones;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
+/** @Route("/api") */
 class PhoneController extends AbstractFOSRestController
 {
     /**
