@@ -1,0 +1,13 @@
+# fixtures/customer.yaml
+
+App\Entity\customer:
+    customer1:
+        __construct: false
+        username: phoneandroid
+        password: \$2y\$13\$sejgq1MU1bTeBsoK2ZwXMuoqAH2HTxwvLiqYGxWR.n802Z3A6NV4O
+        roles: ['ROLE_USER']
+    customer2:
+        __construct: false
+        username: shop.phone
+        password: \$2y\$13\$rkmSvfn7JHrI.HDXhuiYLOVHQqmY8antk/b.hNsRZJDWKvRd9NN5.
+        roles: ['ROLE_USER']

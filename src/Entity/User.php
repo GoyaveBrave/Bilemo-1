@@ -88,19 +88,20 @@ class User
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=64, nullable=true)
-     *
-     * @Serializer\Exclude
-     */
-    private $password;
-
-    /**
      * @ORM\Column(type="datetimetz")
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
      */
     private $created;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     *
+     * @Serializer\Exclude
+     */
+    private $customer;
 
     public function getId(): ?int
     {
@@ -143,18 +144,6 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
@@ -173,5 +162,17 @@ class User
     public function setCreatedValue()
     {
         $this->created = new \Datetime("now", new \DateTimeZone('Europe/Paris'));
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        $this->customer = $customer;
+
+        return $this;
     }
 }
