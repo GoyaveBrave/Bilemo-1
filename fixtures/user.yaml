@@ -1,9 +1,15 @@
 # fixtures/user.yaml
 
 App\Entity\User:
-    user{1..25}:
+    user{1..20}:
         username: <username()>
         fullname: '<firstName()> <lastName()>'
         email: <email()>
-        password: <password()>
         created: '<dateTimeBetween("-200 days", "now")>'
+        customer: '@customer1'
+    user{21..25}:
+        username: <username()>
+        fullname: '<firstName()> <lastName()>'
+        email: <email()>
+        created: '<dateTimeBetween("-200 days", "now")>'
+        customer: '@customer2'
