@@ -9,16 +9,14 @@ use Pagerfanta\Pagerfanta;
 
 class AbstractRepository extends EntityRepository
 {
-    protected function paginate(QueryBuilder $qb, $limit, $offset = 0)
+    protected function paginate(QueryBuilder $qb, $maxPerPage, $currentPage)
     {
-        if (0 === $limit || 0 === $offset) {
-            throw new \LogicException('$limit & $offset must be greater than 0.');
+        if (0 === $maxPerPage || 0 === $currentPage) {
+            throw new \LogicException('$maxPerPage & $currentPage must be greater than 0.');
         }
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($qb));
-        $currentPage = ceil(((int) $offset + 1) / (int) $limit);
-
-        $pagerfanta->setMaxPerPage((int) $limit)
+        $pagerfanta->setMaxPerPage((int) $maxPerPage)
             ->setCurrentPage($currentPage);
 
         return $pagerfanta;

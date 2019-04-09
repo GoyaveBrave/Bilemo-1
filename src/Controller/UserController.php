@@ -37,16 +37,16 @@ class UserController extends AbstractFOSRestController
      *     description="Sort order (asc or desc)."
      * )
      * @Rest\QueryParam(
-     *     name="limit",
+     *     name="max_per_page",
      *     requirements="\d+",
      *     default="10",
      *     description="Max number of results per page."
      * )
      * @Rest\QueryParam(
-     *     name="offset",
+     *     name="current_page",
      *     requirements="\d+",
-     *     default="0",
-     *     description="The pagination offset."
+     *     default="1",
+     *     description="Pagination start page."
      * )
      *
      * @Rest\View(
@@ -64,8 +64,8 @@ class UserController extends AbstractFOSRestController
                 $customer,
                 $paramFetcher->get('keyword'),
                 $paramFetcher->get('order'),
-                $paramFetcher->get('limit'),
-                $paramFetcher->get('offset')
+                $paramFetcher->get('max_per_page'),
+                $paramFetcher->get('current_page')
             );
 
         return new Users($pager);

@@ -4,7 +4,7 @@ namespace App\Repository;
 
 class PhoneRepository extends AbstractRepository
 {
-    public function search($term, $order = 'asc', $limit = 5, $offset = 0)
+    public function search($term, $order = 'asc', $maxPerPage = 5, $currentPage = 1)
     {
         $qb = $this->createQueryBuilder('p')
             ->select('p')
@@ -20,6 +20,6 @@ class PhoneRepository extends AbstractRepository
             ->setParameter('term', '%'.$term.'%');
         }
         
-        return $this->paginate($qb, $limit, $offset);
+        return $this->paginate($qb, $maxPerPage, $currentPage);
     }
 }
