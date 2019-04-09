@@ -83,8 +83,14 @@ class UserController extends AbstractFOSRestController
      *     serializerGroups={"details", "customer"}
      * )
      */
-    public function show(User $user)
+    public function show(Security $security, User $user)
     {
+        $customer = $security->getUser();
+
+        if ($customer !== $user->getCustomer()) {
+            throw new AccessDeniedException('Unable to access this resource!');
+        }
+
         return $user;
     }
 
@@ -136,8 +142,14 @@ class UserController extends AbstractFOSRestController
      *
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      */
-    public function deleteAction(User $user)
+    public function deleteAction(Security $security, User $user)
     {
+        $customer = $security->getUser();
+
+        if ($customer !== $user->getCustomer()) {
+            throw new AccessDeniedException('Unable to access this resource!');
+        }
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($user);
         $entityManager->flush();
