@@ -6,7 +6,7 @@ use App\Entity\Customer;
 
 class UserRepository extends AbstractRepository
 {
-    public function search(Customer $customer, $term, $order = 'asc', $limit = 10, $offset = 0)
+    public function search(Customer $customer, $term, $order = 'asc', $maxPerPage = 10, $currentPage = 1)
     {
         $qb = $this->createQueryBuilder('u')
             ->select('u')
@@ -25,6 +25,6 @@ class UserRepository extends AbstractRepository
             ->setParameter('term', '%'.$term.'%');
         }
         
-        return $this->paginate($qb, $limit, $offset);
+        return $this->paginate($qb, $maxPerPage, $currentPage);
     }
 }

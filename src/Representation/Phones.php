@@ -30,10 +30,10 @@ class Phones
     {
         $this->data = $data->getCurrentPageResults();
 
-        $this->addMeta('limit', $data->getMaxPerPage());
         $this->addMeta('current_items', count($data->getCurrentPageResults()));
         $this->addMeta('total_items', $data->getNbResults());
-        $this->addMeta('offset', $data->getCurrentPageOffsetStart());
+        $this->addMeta('current_page', $data->getCurrentPage());
+        $this->addMeta('total_pages', $data->getNbPages());
     }
 
     public function addMeta($name, $value): void
