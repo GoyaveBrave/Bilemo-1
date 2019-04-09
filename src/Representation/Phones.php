@@ -3,8 +3,16 @@
 namespace App\Representation;
 
 use Pagerfanta\Pagerfanta;
+use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
 
+/**
+ * @Hateoas\Relation(
+ *      "authenticated_user",
+ *      embedded = @Hateoas\Embedded("expr(service('security.token_storage').getToken().getUser())"),
+ *      exclusion = @Hateoas\Exclusion(groups={"list"})
+ * )
+ */
 class Phones
 {
     /**
