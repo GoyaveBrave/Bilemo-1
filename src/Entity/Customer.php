@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -21,11 +22,17 @@ class Customer implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
+     * @Serializer\Since("1.0")
+     * @Serializer\Groups({"customer"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="json")
+     *
+     * @Serializer\Since("1.0")
+     * @Serializer\Groups({"customer"})
      */
     private $roles = [];
 

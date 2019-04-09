@@ -13,10 +13,15 @@ use JMS\Serializer\Annotation as Serializer;
  *      "self",
  *      href = @Hateoas\Route(
  *          "phone_show",
- *          parameters = { "id" = "expr(object.getId())" },
+ *          parameters = {"id"="expr(object.getId())"},
  *          absolute = true
  *      ),
  *      exclusion = @Hateoas\Exclusion(groups={"list"})
+ * )
+ * @Hateoas\Relation(
+ *      "authenticated_user",
+ *      embedded = @Hateoas\Embedded("expr(service('security.token_storage').getToken().getUser())"),
+ *      exclusion = @Hateoas\Exclusion(groups={"details"})
  * )
  */
 class Phone

@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      "self",
  *      href = @Hateoas\Route(
  *          "user_show",
- *          parameters = { "id" = "expr(object.getId())" },
+ *          parameters = {"id"="expr(object.getId())"},
  *          absolute = true
  *      ),
  *      exclusion = @Hateoas\Exclusion(groups={"list"})
@@ -28,9 +28,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      "delete",
  *      href = @Hateoas\Route(
  *          "user_delete",
- *          parameters = { "id" = "expr(object.getId())" },
+ *          parameters = {"id"="expr(object.getId())"},
  *          absolute = true
  *      ),
+ *      exclusion = @Hateoas\Exclusion(groups={"list", "details"})
+ * )
+ * @Hateoas\Relation(
+ *      "authenticated_user",
+ *      embedded = @Hateoas\Embedded("expr(service('security.token_storage').getToken().getUser())"),
  *      exclusion = @Hateoas\Exclusion(groups={"details"})
  * )
  */
@@ -56,7 +61,7 @@ class User
      *     groups={"create"}
      * )
      *
-     * @Serializer\Since("2.0")
+     * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
      */
     private $fullname;
@@ -98,8 +103,6 @@ class User
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
-     *
-     * @Serializer\Exclude
      */
     private $customer;
 
