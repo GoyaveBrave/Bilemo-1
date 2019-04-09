@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /** @Route("/api") */
 class UserController extends AbstractFOSRestController
@@ -49,15 +51,17 @@ class UserController extends AbstractFOSRestController
      *
      * @Rest\View(
      *     statusCode=Response::HTTP_OK,
-     *     serializerGroups={"list"}
+     *     serializerGroups={"list", "customer"}
      * )
      */
-    public function list(ParamFetcherInterface $paramFetcher)
+    public function list(Security $security, ParamFetcherInterface $paramFetcher)
     {
-        // dump($this->getUser()->getUsername()); die();
+        $customer = $security->getUser();
+
         $pager = $this->getDoctrine()
             ->getRepository(User::class)
             ->search(
+                $customer,
                 $paramFetcher->get('keyword'),
                 $paramFetcher->get('order'),
                 $paramFetcher->get('limit'),
@@ -76,11 +80,17 @@ class UserController extends AbstractFOSRestController
      *
      * @Rest\View(
      *     statusCode=Response::HTTP_OK,
-     *     serializerGroups={"details"}
+     *     serializerGroups={"details", "customer"}
      * )
      */
-    public function show(User $user)
+    public function show(Security $security, User $user)
     {
+        $customer = $security->getUser();
+
+        if ($customer !== $user->getCustomer()) {
+            throw new AccessDeniedException('Unable to access this resource!');
+        }
+
         return $user;
     }
 
@@ -100,10 +110,10 @@ class UserController extends AbstractFOSRestController
      *
      * @Rest\View(
      *     statusCode=Response::HTTP_CREATED,
-     *     serializerGroups={"details"}
+     *     serializerGroups={"details", "customer"}
      * )
      */
-    public function create(User $user, ConstraintViolationListInterface $violations)
+    public function create(Security $security, User $user, ConstraintViolationListInterface $violations)
     {
         if (count($violations) > 0) {
             $message = 'The JSON sent contains invalid data. Here are the errors you need to correct: ';
@@ -115,6 +125,8 @@ class UserController extends AbstractFOSRestController
         }
 
         $entityManager = $this->getDoctrine()->getManager();
+        $customer = $security->getUser();
+        $user->setCustomer($customer);
         $entityManager->persist($user);
         $entityManager->flush();
 
@@ -130,11 +142,17 @@ class UserController extends AbstractFOSRestController
      *
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      */
-    public function deleteAction(User $user)
+    public function deleteAction(Security $security, User $user)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($user);
-        $em->flush();
+        $customer = $security->getUser();
+
+        if ($customer !== $user->getCustomer()) {
+            throw new AccessDeniedException('Unable to access this resource!');
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
 
         return;
     }

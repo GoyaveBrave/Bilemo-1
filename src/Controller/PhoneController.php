@@ -46,7 +46,7 @@ class PhoneController extends AbstractFOSRestController
      *
      * @Rest\View(
      *     statusCode=Response::HTTP_OK,
-     *     serializerGroups={"list"}
+     *     serializerGroups={"list", "customer"}
      * )
      */
     public function list(ParamFetcherInterface $paramFetcher)
@@ -72,7 +72,7 @@ class PhoneController extends AbstractFOSRestController
      *
      * @Rest\View(
      *     statusCode=Response::HTTP_OK,
-     *     serializerGroups={"details"}
+     *     serializerGroups={"details", "customer"}
      * )
      */
     public function show(Phone $phone)
