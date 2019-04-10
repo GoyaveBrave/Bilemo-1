@@ -5,8 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Swagger\Annotations as SWG;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -48,6 +50,8 @@ class User
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list"})
+     *
+     * @SWG\Property(description="The unique identifier of the phone.")
      */
     private $id;
 
@@ -63,6 +67,8 @@ class User
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
+     *
+     * @SWG\Property(type="string", minLength=2, maxLength=64)
      */
     private $fullname;
 
@@ -78,6 +84,8 @@ class User
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
+     *
+     * @SWG\Property(type="string", maxLength=64)
      */
     private $username;
 
@@ -89,6 +97,8 @@ class User
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
+     *
+     * @SWG\Property(type="string", maxLength=255)
      */
     private $email;
 
@@ -97,6 +107,8 @@ class User
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
+     *
+     * @SWG\Property(type="datetimete")
      */
     private $created;
 

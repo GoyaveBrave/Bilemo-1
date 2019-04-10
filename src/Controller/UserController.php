@@ -8,8 +8,10 @@ use App\Representation\Users;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use Nelmio\ApiDocBundle\Annotation as Doc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Security\Core\Security;
@@ -53,6 +55,20 @@ class UserController extends AbstractFOSRestController
      *     statusCode=Response::HTTP_OK,
      *     serializerGroups={"list", "customer"}
      * )
+     *
+     * @Doc\Operation(
+     *     tags={"Users"},
+     *     summary="Get the list of all user.",
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Returned when successful",
+     *         @Doc\Model(type=User::class, groups={"list", "customer"})
+     *     ),
+     *     @SWG\Response(
+     *         response="401",
+     *         description="Returned when the JWT Token is expired or invalid"
+     *     )
+     * )
      */
     public function list(Security $security, ParamFetcherInterface $paramFetcher)
     {
@@ -81,6 +97,28 @@ class UserController extends AbstractFOSRestController
      * @Rest\View(
      *     statusCode=Response::HTTP_OK,
      *     serializerGroups={"details", "customer"}
+     * )
+     *
+     * @Doc\Operation(
+     *     tags={"Users"},
+     *     summary="Get one user",
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Returned when successful",
+     *         @Doc\Model(type=User::class, groups={"details", "customer"})
+     *     ),
+     *     @SWG\Response(
+     *         response="401",
+     *         description="Returned when the JWT Token is expired or invalid"
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="returned when the authenticated customer is not allowed to access the selected user"
+     *     ),
+     *     @SWG\Response(
+     *         response="404",
+     *         description="Returned when the user is not found"
+     *     )
      * )
      */
     public function show(Security $security, User $user)
@@ -112,6 +150,24 @@ class UserController extends AbstractFOSRestController
      *     statusCode=Response::HTTP_CREATED,
      *     serializerGroups={"details", "customer"}
      * )
+     *
+     * @Doc\Operation(
+     *     tags={"Users"},
+     *     summary="Create one user",
+     *     @SWG\Response(
+     *         response=201,
+     *         description="Returned when created",
+     *         @Doc\Model(type=User::class, groups={"details", "customer"})
+     *     ),
+     *     @SWG\Response(
+     *         response="400",
+     *         description="Returned when a violation is raised by validation"
+     *     ),
+     *     @SWG\Response(
+     *         response="401",
+     *         description="Returned when the JWT Token is expired or invalid"
+     *     )
+     * )
      */
     public function create(Security $security, User $user, ConstraintViolationListInterface $violations)
     {
@@ -141,8 +197,30 @@ class UserController extends AbstractFOSRestController
      * )
      *
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     *
+     * @Doc\Operation(
+     *     tags={"Users"},
+     *     summary="Delete one user",
+     *     @SWG\Response(
+     *         response=204,
+     *         description="Returned when deleted",
+     *         @Doc\Model(type=User::class, groups={"details", "customer"})
+     *     ),
+     *     @SWG\Response(
+     *         response="401",
+     *         description="Returned when the JWT Token is expired or invalid"
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="returned when the authenticated customer is not allowed to access the selected user"
+     *     ),
+     *     @SWG\Response(
+     *         response="404",
+     *         description="Returned when the user is not found"
+     *     )
+     * )
      */
-    public function deleteAction(Security $security, User $user)
+    public function delete(Security $security, User $user)
     {
         $customer = $security->getUser();
 
