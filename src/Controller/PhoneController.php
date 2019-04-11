@@ -94,6 +94,12 @@ class PhoneController extends AbstractFOSRestController
      * @Doc\Operation(
      *     tags={"Phones"},
      *     summary="Get one phone",
+     *     @SWG\Parameter(
+     *         name="id",
+     *         in="path",
+     *         type="integer",
+     *         description="The phone unique identifier"
+     *     ),
      *     @SWG\Response(
      *         response=200,
      *         description="Returned when successful",

@@ -102,6 +102,12 @@ class UserController extends AbstractFOSRestController
      * @Doc\Operation(
      *     tags={"Users"},
      *     summary="Get one user",
+     *     @SWG\Parameter(
+     *         name="id",
+     *         in="path",
+     *         type="integer",
+     *         description="The user unique identifier"
+     *     ),
      *     @SWG\Response(
      *         response=200,
      *         description="Returned when successful",
@@ -201,6 +207,12 @@ class UserController extends AbstractFOSRestController
      * @Doc\Operation(
      *     tags={"Users"},
      *     summary="Delete one user",
+     *     @SWG\Parameter(
+     *         name="id",
+     *         in="path",
+     *         type="integer",
+     *         description="The user unique identifier"
+     *     ),
      *     @SWG\Response(
      *         response=204,
      *         description="Returned when deleted",
