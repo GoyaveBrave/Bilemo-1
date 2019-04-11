@@ -42,7 +42,7 @@ class Users
         $this->addMeta('total_items', $data->getNbResults());
         if ($data->hasPreviousPage()) {
             $this->addMeta('previous_page', $data->getPreviousPage());
-        }        
+        }
         $this->addMeta('current_page', $data->getCurrentPage());
         if ($data->hasNextPage()) {
             $this->addMeta('next_page', $data->getNextPage());

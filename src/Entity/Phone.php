@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhoneRepository")
@@ -33,6 +35,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list"})
+     *
+     * @SWG\Property(description="The unique identifier of the phone.")
      */
     private $id;
 
@@ -41,6 +45,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
+     *
+     * @SWG\Property(type="string", maxLength=64)
      */
     private $name;
 
@@ -49,6 +55,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
+     *
+     * @SWG\Property(type="string", maxLength=8)
      */
     private $price;
 
@@ -57,6 +65,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"list", "details"})
+     *
+     * @SWG\Property(type="string", maxLength=16)
      */
     private $brand;
 
@@ -65,6 +75,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
+     *
+     * @SWG\Property(type="string", maxLength=16)
      */
     private $operationSystem;
 
@@ -73,6 +85,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
+     *
+     * @SWG\Property(type="string", maxLength=16)
      */
     private $screenSize;
 
@@ -81,6 +95,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
+     *
+     * @SWG\Property(type="string", maxLength=16)
      */
     private $internalStorage;
 
@@ -89,6 +105,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
+     *
+     * @SWG\Property(type="string", maxLength=16)
      */
     private $color;
 
@@ -97,6 +115,8 @@ class Phone
      *
      * @Serializer\Since("1.0")
      * @Serializer\Groups({"details"})
+     *
+     * @SWG\Property(type="text")
      */
     private $description;
 

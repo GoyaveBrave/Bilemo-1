@@ -7,9 +7,20 @@ login_check:
     path: /login_check
     methods:  [POST]
 
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+app.swagger:
+    path: /api/doc.json
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }
+    
 # homepage:
 #     path: /
 #     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
 #     defaults:
 #         path: /login_check
 #         permanent: true
+    
