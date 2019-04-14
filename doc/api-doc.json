@@ -1,0 +1,453 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Bilemo",
+    "description": "Mobile Phone API",
+    "version": "1.0.0"
+  },
+  "host": "bilemo",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/phones": {
+      "get": {
+        "summary": "Get the list of all phone.",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "allowEmptyValue": true,
+            "required": false,
+            "description": "The keyword to search for",
+            "type": "string",
+            "pattern": "[a-zA-Z0-9]+"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": false,
+            "description": "Sort order (asc or desc)",
+            "type": "string",
+            "default": "asc",
+            "pattern": "asc|desc"
+          },
+          {
+            "name": "max_per_page",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": false,
+            "description": "Max number of results per page",
+            "type": "string",
+            "default": "5",
+            "pattern": "\\d+"
+          },
+          {
+            "name": "current_page",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": false,
+            "description": "Pagination start page",
+            "type": "string",
+            "default": "1",
+            "pattern": "\\d+"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when successful",
+            "schema": {
+              "$ref": "#/definitions/Phone"
+            }
+          },
+          "401": {
+            "description": "Returned when the JWT Token is expired or invalid"
+          }
+        },
+        "tags": [
+          "Phones"
+        ]
+      }
+    },
+    "/api/phones/{id}": {
+      "get": {
+        "summary": "Get one phone",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The phone unique identifier",
+            "type": "integer",
+            "pattern": "\\d+"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when successful",
+            "schema": {
+              "$ref": "#/definitions/Phone2"
+            }
+          },
+          "401": {
+            "description": "Returned when the JWT Token is expired or invalid"
+          },
+          "404": {
+            "description": "Returned when the phone is not found"
+          }
+        },
+        "tags": [
+          "Phones"
+        ]
+      }
+    },
+    "/api/users": {
+      "get": {
+        "summary": "Get the list of all user.",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "allowEmptyValue": true,
+            "required": false,
+            "description": "The keyword to search for.",
+            "type": "string",
+            "pattern": "[a-zA-Z0-9]+"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": false,
+            "description": "Sort order (asc or desc).",
+            "type": "string",
+            "default": "asc",
+            "pattern": "asc|desc"
+          },
+          {
+            "name": "max_per_page",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": false,
+            "description": "Max number of results per page.",
+            "type": "string",
+            "default": "10",
+            "pattern": "\\d+"
+          },
+          {
+            "name": "current_page",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": false,
+            "description": "Pagination start page.",
+            "type": "string",
+            "default": "1",
+            "pattern": "\\d+"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when successful",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Returned when the JWT Token is expired or invalid"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      },
+      "post": {
+        "summary": "Create one user",
+        "responses": {
+          "201": {
+            "description": "Returned when created",
+            "schema": {
+              "$ref": "#/definitions/User2"
+            }
+          },
+          "400": {
+            "description": "Returned when a violation is raised by validation"
+          },
+          "401": {
+            "description": "Returned when the JWT Token is expired or invalid"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "summary": "Get one user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The user unique identifier",
+            "type": "integer",
+            "pattern": "\\d+"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when successful",
+            "schema": {
+              "$ref": "#/definitions/User2"
+            }
+          },
+          "401": {
+            "description": "Returned when the JWT Token is expired or invalid"
+          },
+          "403": {
+            "description": "returned when the authenticated customer is not allowed to access the selected user"
+          },
+          "404": {
+            "description": "Returned when the user is not found"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      },
+      "delete": {
+        "summary": "Delete one user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The user unique identifier",
+            "type": "integer",
+            "pattern": "\\d+"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Returned when deleted",
+            "schema": {
+              "$ref": "#/definitions/User2"
+            }
+          },
+          "401": {
+            "description": "Returned when the JWT Token is expired or invalid"
+          },
+          "403": {
+            "description": "returned when the authenticated customer is not allowed to access the selected user"
+          },
+          "404": {
+            "description": "Returned when the user is not found"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/doc.json": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Phone": {
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the phone.",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "price": {
+          "type": "string",
+          "maxLength": 8
+        },
+        "brand": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "_links": {
+          "readOnly": true,
+          "properties": {
+            "self": {
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Phone2": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "price": {
+          "type": "string",
+          "maxLength": 8
+        },
+        "brand": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "operation_system": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "screen_size": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "internal_storage": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "color": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "description": {
+          "type": "text"
+        },
+        "_embedded": {
+          "readOnly": true,
+          "properties": {
+            "authenticated_user": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "User": {
+      "required": [
+        "fullname",
+        "username",
+        "email"
+      ],
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the phone.",
+          "type": "integer"
+        },
+        "fullname": {
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 2
+        },
+        "username": {
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 2
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "_links": {
+          "readOnly": true,
+          "properties": {
+            "self": {
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "delete": {
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "User2": {
+      "required": [
+        "fullname",
+        "username",
+        "email"
+      ],
+      "properties": {
+        "fullname": {
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 2
+        },
+        "username": {
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 2
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "created": {
+          "type": "datetimete"
+        },
+        "_links": {
+          "readOnly": true,
+          "properties": {
+            "delete": {
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "_embedded": {
+          "readOnly": true,
+          "properties": {
+            "authenticated_user": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "type": "apiKey",
+      "in": "header",
+      "description": "Value: Bearer {jwt}"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}
