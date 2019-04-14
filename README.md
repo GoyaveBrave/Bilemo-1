@@ -46,8 +46,7 @@ Le premier partenaire de BileMo est très exigeant : il requiert que vous exposi
 ```
 $ composer install
 ```
-3.  Customize the database connection information in .env
-`DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name`
+3.  Customize the database connection information in the DATABASE_URL variable inside .env
 4.  Create the database, the schema, and load data fixtures
 ```
 $ php bin/console doctrine:database:create
@@ -60,5 +59,4 @@ $ php bin/console hautelook:fixtures:load
 $ openssl genrsa -out config/jwt/private.pem -aes256 4096
 $ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
 ```
-6.  Configure the SSH keys path in .env
-`JWT_PASSPHRASE=your_secret_passphrase`
+6.  Configure the SSH keys path in the JWT_PASSPHRASE variable inside .env
