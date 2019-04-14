@@ -4,12 +4,10 @@ __OpenClassrooms project :__ Create a web service exposing an API
 
 ![Vibrating Phone](public/images/vibrating-phone.jpg)
 
-
 ## Summary
 
 *   [Assignment](#assignment)
 *   [Installation](#installation)
-
 
 ## Assignment
 
@@ -41,24 +39,23 @@ Vous avez le choix de mettre en place un serveur Oauth et d’y faire appel (en 
 
 Le premier partenaire de BileMo est très exigeant : il requiert que vous exposiez vos données en suivant les règles des niveaux 1, 2 et 3 du modèle de Richardson. Il a demandé à ce que vous serviez les données en JSON. Si possible, le client souhaite que les réponses soient mises en cache afin d’optimiser les performances des requêtes en direction de l’API.
 
-
 ## Installation
 
-1. Clone or download this repository in your project folder
+1.  Clone or download this repository in your project folder
 
-2. Install all the project dependencies
+2.  Install all the project dependencies
 
 ```
 $ composer install
 ```
 
-3. Customize the database connection information in .env
+3.  Customize the database connection information in .env
 
 ```
 DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
 ```
 
-4. Create the database, the schema, and load data fixtures
+4.  Create the database, the schema, and load data fixtures
 
 ```
 $ php bin/console doctrine:database:create
@@ -67,14 +64,14 @@ $ php bin/console make:migration
 $ php bin/console hautelook:fixtures:load
 ```
 
-5. Generate the SSH keys
+5.  Generate the SSH keys
 
 ```
 $ openssl genrsa -out config/jwt/private.pem -aes256 4096
 $ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
 ```
 
-6. Configure the SSH keys path in .env
+6.  Configure the SSH keys path in .env
 
 ```
 JWT_PASSPHRASE=your_secret_passphrase
