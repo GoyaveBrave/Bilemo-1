@@ -42,37 +42,27 @@ Le premier partenaire de BileMo est très exigeant : il requiert que vous exposi
 ## Installation
 
 1.  Clone or download this repository in your project folder
-
 2.  Install all the project dependencies
-
 ```
 $ composer install
 ```
-
 3.  Customize the database connection information in .env
-
 ```
 DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
 ```
-
 4.  Create the database, the schema, and load data fixtures
-
 ```
 $ php bin/console doctrine:database:create
 $ php bin/console make:entity
 $ php bin/console make:migration
 $ php bin/console hautelook:fixtures:load
 ```
-
 5.  Generate the SSH keys
-
 ```
 $ openssl genrsa -out config/jwt/private.pem -aes256 4096
 $ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
 ```
-
 6.  Configure the SSH keys path in .env
-
 ```
 JWT_PASSPHRASE=your_secret_passphrase
 ```
