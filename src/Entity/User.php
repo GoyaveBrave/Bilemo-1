@@ -65,7 +65,7 @@ class User
      *     groups={"create"}
      * )
      *
-     * @Serializer\Since("1.0")
+     * @Serializer\Since("2.0")
      * @Serializer\Groups({"list", "details"})
      *
      * @SWG\Property(type="string", minLength=2, maxLength=64)
