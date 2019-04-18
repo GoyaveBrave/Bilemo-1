@@ -1,12 +1,21 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Tests\Entity;
 
 use App\Entity\Phone;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class PhoneTest.
+ */
 class PhoneTest extends TestCase
 {
+    /**
+     * @var Phone
+     */
     private $phone;
 
     protected function setUp()
@@ -39,14 +48,14 @@ class PhoneTest extends TestCase
     public function testDescription()
     {
         $description = "We set the standard in mobile gaming with the Razer phone, but didn't stop there. ";
-        $description .= "The RAZER Phone 2 levels up mobile gaming with a brighter 1440P 120Hz ";
-        $description .= "display with ultra motion technology which delivers smooth, sharp, and ";
-        $description .= "stutter-free visuals combined with an upgraded Snapdragon 845 with vapor chamber cooling. ";
-        $description .= "It’s paired with flagship features including wireless charging, ";
-        $description .= "water resistance, and Chroma RGB lighting for full customization. ";
-        $description .= "The Razer phone 2’s vastly improved Dual cameras ";
-        $description .= "let you capture reality in all its glory with an F/1. ";
-        $description .= "75 wide lens with oil combined with a Telephoto.";
+        $description .= 'The RAZER Phone 2 levels up mobile gaming with a brighter 1440P 120Hz ';
+        $description .= 'display with ultra motion technology which delivers smooth, sharp, and ';
+        $description .= 'stutter-free visuals combined with an upgraded Snapdragon 845 with vapor chamber cooling. ';
+        $description .= 'It’s paired with flagship features including wireless charging, ';
+        $description .= 'water resistance, and Chroma RGB lighting for full customization. ';
+        $description .= 'The Razer phone 2’s vastly improved Dual cameras ';
+        $description .= 'let you capture reality in all its glory with an F/1. ';
+        $description .= '75 wide lens with oil combined with a Telephoto.';
         $this->phone->setDescription($description);
 
         $this->assertInternalType('string', $this->phone->getDescription());

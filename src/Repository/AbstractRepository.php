@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Repository;
 
@@ -7,8 +10,18 @@ use Doctrine\ORM\QueryBuilder;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
+/**
+ * Class AbstractRepository.
+ */
 class AbstractRepository extends EntityRepository
 {
+    /**
+     * @param QueryBuilder $qb
+     * @param $maxPerPage
+     * @param $currentPage
+     *
+     * @return Pagerfanta
+     */
     protected function paginate(QueryBuilder $qb, $maxPerPage, $currentPage)
     {
         if (0 === $maxPerPage || 0 === $currentPage) {

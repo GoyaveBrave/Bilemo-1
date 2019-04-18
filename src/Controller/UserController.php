@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Controller;
 
@@ -17,10 +20,19 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-/** @Route("/api") */
+/**
+ * Class UserController.
+ *
+ * @Route("/api")
+ */
 class UserController extends AbstractFOSRestController
 {
     /**
+     * @param Security              $security
+     * @param ParamFetcherInterface $paramFetcher
+     *
+     * @return Users
+     *
      * @Rest\Get(
      *     path = "/users",
      *     name = "user_list",
@@ -88,6 +100,11 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @param Security $security
+     * @param User     $user
+     *
+     * @return User
+     *
      * @Rest\Get(
      *     path = "/users/{id}",
      *     name = "user_show",
@@ -139,6 +156,14 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @param Security                         $security
+     * @param User                             $user
+     * @param ConstraintViolationListInterface $violations
+     *
+     * @return User
+     *
+     * @throws ResourceValidationException
+     *
      * @Rest\Post(
      *     path = "/users",
      *     name = "user_create",
@@ -196,6 +221,9 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @param Security $security
+     * @param User     $user
+     *
      * @Rest\Delete(
      *     path = "/users/{id}",
      *     name = "user_delete",

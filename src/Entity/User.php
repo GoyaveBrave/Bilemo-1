@@ -1,16 +1,20 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Swagger\Annotations as SWG;
 
 /**
+ * Class User.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
  *
@@ -44,6 +48,8 @@ use Swagger\Annotations as SWG;
 class User
 {
     /**
+     * @var int
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -56,6 +62,8 @@ class User
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=64)
      *
      * @Assert\NotBlank(groups={"create"})
@@ -73,6 +81,8 @@ class User
     private $fullname;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=64, unique=true)
      *
      * @Assert\NotBlank(groups={"create"})
@@ -90,6 +100,8 @@ class User
     private $username;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, unique=true)
      *
      * @Assert\NotBlank(groups={"create"})
@@ -103,6 +115,8 @@ class User
     private $email;
 
     /**
+     * @var \DateTimeInterface
+     *
      * @ORM\Column(type="datetimetz")
      *
      * @Serializer\Since("1.0")
@@ -113,21 +127,34 @@ class User
     private $created;
 
     /**
+     * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
     private $customer;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getFullname(): ?string
     {
         return $this->fullname;
     }
 
+    /**
+     * @param string $fullname
+     *
+     * @return User
+     */
     public function setFullname(string $fullname): self
     {
         $this->fullname = $fullname;
@@ -135,11 +162,19 @@ class User
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+     * @param string $username
+     *
+     * @return User
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -147,11 +182,19 @@ class User
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     *
+     * @return User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -159,11 +202,19 @@ class User
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
     }
 
+    /**
+     * @param \DateTimeInterface $created
+     *
+     * @return User
+     */
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
@@ -176,14 +227,22 @@ class User
      */
     public function setCreatedValue()
     {
-        $this->created = new \Datetime("now", new \DateTimeZone('Europe/Paris'));
+        $this->created = new \Datetime('now', new \DateTimeZone('Europe/Paris'));
     }
 
+    /**
+     * @return Customer|null
+     */
     public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
+    /**
+     * @param Customer|null $customer
+     *
+     * @return User
+     */
     public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;

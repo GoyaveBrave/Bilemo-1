@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Controller;
 
@@ -12,10 +15,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Response;
 
-/** @Route("/api") */
+/**
+ * Class PhoneController.
+ *
+ * @Route("/api")
+ */
 class PhoneController extends AbstractFOSRestController
 {
     /**
+     * @param ParamFetcherInterface $paramFetcher
+     *
+     * @return Phones
+     *
      * @Rest\Get(
      *     path = "/phones",
      *     name = "phone_list",
@@ -80,6 +91,10 @@ class PhoneController extends AbstractFOSRestController
     }
 
     /**
+     * @param Phone $phone
+     *
+     * @return Phone
+     *
      * @Rest\Get(
      *     path = "/phones/{id}",
      *     name = "phone_show",

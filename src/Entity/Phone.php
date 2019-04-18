@@ -1,14 +1,18 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 
 /**
+ * Class Phone.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\PhoneRepository")
  *
  * @Hateoas\Relation(
@@ -29,6 +33,8 @@ use Swagger\Annotations as SWG;
 class Phone
 {
     /**
+     * @var int
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -41,6 +47,8 @@ class Phone
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=64, unique=true)
      *
      * @Serializer\Since("1.0")
@@ -51,6 +59,8 @@ class Phone
     private $name;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=8)
      *
      * @Serializer\Since("1.0")
@@ -61,6 +71,8 @@ class Phone
     private $price;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=16)
      *
      * @Serializer\Since("1.0")
@@ -71,6 +83,8 @@ class Phone
     private $brand;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=16)
      *
      * @Serializer\Since("1.0")
@@ -81,6 +95,8 @@ class Phone
     private $operationSystem;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=16)
      *
      * @Serializer\Since("1.0")
@@ -91,6 +107,8 @@ class Phone
     private $screenSize;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=16)
      *
      * @Serializer\Since("1.0")
@@ -101,6 +119,8 @@ class Phone
     private $internalStorage;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=16)
      *
      * @Serializer\Since("1.0")
@@ -111,6 +131,8 @@ class Phone
     private $color;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      *
      * @Serializer\Since("1.0")
@@ -120,16 +142,27 @@ class Phone
      */
     private $description;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     *
+     * @return Phone
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -137,11 +170,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPrice(): ?string
     {
         return $this->price;
     }
 
+    /**
+     * @param string $price
+     *
+     * @return Phone
+     */
     public function setPrice(string $price): self
     {
         $this->price = $price;
@@ -149,11 +190,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getBrand(): ?string
     {
         return $this->brand;
     }
 
+    /**
+     * @param string $brand
+     *
+     * @return Phone
+     */
     public function setBrand(string $brand): self
     {
         $this->brand = $brand;
@@ -161,11 +210,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getOperationSystem(): ?string
     {
         return $this->operationSystem;
     }
 
+    /**
+     * @param string $operationSystem
+     *
+     * @return Phone
+     */
     public function setOperationSystem(string $operationSystem): self
     {
         $this->operationSystem = $operationSystem;
@@ -173,11 +230,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getScreenSize(): ?string
     {
         return $this->screenSize;
     }
 
+    /**
+     * @param string $screenSize
+     *
+     * @return Phone
+     */
     public function setScreenSize(string $screenSize): self
     {
         $this->screenSize = $screenSize;
@@ -185,11 +250,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getInternalStorage(): ?string
     {
         return $this->internalStorage;
     }
 
+    /**
+     * @param string $internalStorage
+     *
+     * @return Phone
+     */
     public function setInternalStorage(string $internalStorage): self
     {
         $this->internalStorage = $internalStorage;
@@ -197,11 +270,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getColor(): ?string
     {
         return $this->color;
     }
 
+    /**
+     * @param string $color
+     *
+     * @return Phone
+     */
     public function setColor(string $color): self
     {
         $this->color = $color;
@@ -209,11 +290,19 @@ class Phone
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param string $description
+     *
+     * @return Phone
+     */
     public function setDescription(string $description): self
     {
         $this->description = $description;
