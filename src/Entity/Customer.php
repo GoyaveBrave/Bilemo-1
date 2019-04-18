@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Entity;
 
@@ -9,11 +12,15 @@ use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * Class Customer.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
  */
 class Customer implements UserInterface
 {
     /**
+     * @var int
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -21,6 +28,8 @@ class Customer implements UserInterface
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=180, unique=true)
      *
      * @Serializer\Since("1.0")
@@ -29,6 +38,8 @@ class Customer implements UserInterface
     private $username;
 
     /**
+     * @var array
+     *
      * @ORM\Column(type="json")
      *
      * @Serializer\Since("1.0")
@@ -38,22 +49,33 @@ class Customer implements UserInterface
 
     /**
      * @var string The hashed password
+     *
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="customer")
      */
     private $users;
 
+    /**
+     * Customer constructor.
+     *
+     * @param $username
+     */
     public function __construct($username)
     {
         $this->username = $username;
-        $this->roles = array('ROLE_USER');
+        $this->roles = ['ROLE_USER'];
         $this->users = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +91,11 @@ class Customer implements UserInterface
         return (string) $this->username;
     }
 
+    /**
+     * @param string $username
+     *
+     * @return Customer
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -88,6 +115,11 @@ class Customer implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     *
+     * @return Customer
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -103,6 +135,11 @@ class Customer implements UserInterface
         return (string) $this->password;
     }
 
+    /**
+     * @param string $password
+     *
+     * @return Customer
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -135,6 +172,11 @@ class Customer implements UserInterface
         return $this->users;
     }
 
+    /**
+     * @param User $user
+     *
+     * @return Customer
+     */
     public function addUser(User $user): self
     {
         if (!$this->users->contains($user)) {
@@ -145,6 +187,11 @@ class Customer implements UserInterface
         return $this;
     }
 
+    /**
+     * @param User $user
+     *
+     * @return Customer
+     */
     public function removeUser(User $user): self
     {
         if ($this->users->contains($user)) {

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Sébastien Rochat <percevalseb@gmail.com>
+ */
 
 namespace App\Representation;
 
@@ -7,6 +10,8 @@ use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
+ * Class Phones.
+ *
  * @Hateoas\Relation(
  *      "authenticated_user",
  *      embedded = @Hateoas\Embedded("expr(service('security.token_storage').getToken().getUser())"),
@@ -16,16 +21,25 @@ use JMS\Serializer\Annotation as Serializer;
 class Phones
 {
     /**
+     * @var array|\Traversable
+     *
      * @Serializer\Type("array<App\Entity\Phone>")
      * @Serializer\Groups("list")
      */
     public $data;
 
     /**
+     * @var array
+     *
      * @Serializer\Groups("list")
      */
     public $meta;
 
+    /**
+     * Phones constructor.
+     *
+     * @param Pagerfanta $data
+     */
     public function __construct(Pagerfanta $data)
     {
         $this->data = $data->getCurrentPageResults();
@@ -42,6 +56,10 @@ class Phones
         $this->addMeta('total_pages', $data->getNbPages());
     }
 
+    /**
+     * @param $name
+     * @param $value
+     */
     public function addMeta($name, $value): void
     {
         if (isset($this->meta[$name])) {
@@ -53,6 +71,10 @@ class Phones
         $this->setMeta($name, $value);
     }
 
+    /**
+     * @param $name
+     * @param $value
+     */
     public function setMeta($name, $value): void
     {
         $this->meta[$name] = $value;
