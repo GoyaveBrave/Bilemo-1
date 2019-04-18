@@ -8,6 +8,8 @@ __OpenClassrooms project :__ Create a web service exposing an API
 
 *   [Assignment](#assignment)
 *   [Installation](#installation)
+*   [Usage](#usage)
+*   [Documentation](#documentation)
 
 ## Assignment
 
@@ -60,3 +62,24 @@ $ openssl genrsa -out config/jwt/private.pem -aes256 4096
 $ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
 ```
 6.  Configure the SSH keys path in the JWT_PASSPHRASE variable inside .env
+
+## Usage
+
+You need to get a JSON Web Token to access the API resources
+
+For that, send the HTTP POST request in {yourdomain}/api/login_check with this JSON data in the Body of the request
+```
+{
+	"username": "phoneandroid",
+	"password": "l565oHhY"
+}
+```
+
+Then, you receive a valid token for one hour that you must fill in the Headers of each of your HTTP requests to access the API resources
+```
+Authorization: Bearer yourAccessToken
+```
+
+## Documentation
+
+You can access API documentation in {yourdomain}/api/doc or from this link ![api documentation in json format](doc/api-doc.json)
